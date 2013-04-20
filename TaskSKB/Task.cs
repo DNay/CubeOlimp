@@ -376,7 +376,15 @@ namespace TaskSKB
         }
 
 
-
+        public string Reindex(string colorstr, int []ind)
+        {
+            string result = "";
+            for (int i = 0; i < 6; i++)
+            {
+                result = result + colorstr[ind[i]];
+            }
+            return result;
+        }
 
 
 
