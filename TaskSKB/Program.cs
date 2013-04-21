@@ -10,10 +10,15 @@ namespace TaskSKB
         static void Main(string[] args)
         {
             var task = new Task();
-            int v = task.RecognizeType("acfg..");
-            Console.WriteLine(v);
+            //int v = task.RecognizeType("acfg..");
+            task.GetRotateMap("abcdef");
+            
+            for (int i = 0; i < task.RotateMap.Count; i++)
+            {
+                var l = task.RotateMap[i];
+                Console.WriteLine(l);
+            }
             Console.ReadLine();
-
         }
     }
 }

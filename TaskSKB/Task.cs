@@ -8,6 +8,7 @@ namespace TaskSKB
     class Task
     {
         public Cube BigCube;
+        public List<string> RotateMap = new List<string>();//карта поворотов
         public List<Cube> SmallCube = new List<Cube>(); //список с исходными данными
         public List<int> ListWidth = new List<int>(); //список размеров
         public List<int> ListDepth = new List<int>();
@@ -63,6 +64,7 @@ namespace TaskSKB
             ListWidth.Sort();
             BoolFrame = new bool[ListWidth.Count, ListDepth.Count, ListHeight.Count];
         }
+
         public int CountChar(string str, char sym)
         {
             int result = 0;
@@ -79,13 +81,13 @@ namespace TaskSKB
             switch (CountChar(str, '.'))
             {
                 case 6:
-                    return 4;//внутренний куб
+                    return 4; //внутренний куб
                 case 5:
-                    return 1;//угол
+                    return 3; //грань
                 case 1:
-                    return 3;//грань
+                    return 1; //угол
                 case 0:
-                    return 1;//целый куб, считаем как угол
+                    return 1; //целый куб, считаем как угол
                 case 2:
                     if (str[0] == str[1] || str[2] == str[3] || str[4] == str[5])
                         return 2;
@@ -107,6 +109,36 @@ namespace TaskSKB
                     return -1;
             }
         }
+
+        public void GetRotateMap(string str)
+        {
+            RotateMap.Add(Reindex(str, new int[] { 0, 1, 2, 3, 4, 5 }));
+            RotateMap.Add(Reindex(str, new int[] { 0, 1, 4, 5, 3, 2 }));
+            RotateMap.Add(Reindex(str, new int[] { 0, 1, 3, 2, 5, 4 }));
+            RotateMap.Add(Reindex(str, new int[] { 0, 1, 5, 4, 2, 3 }));
+            RotateMap.Add(Reindex(str, new int[] { 1, 0, 2, 3, 4, 5 }));
+            RotateMap.Add(Reindex(str, new int[] { 1, 0, 5, 4, 3, 2 }));
+            RotateMap.Add(Reindex(str, new int[] { 1, 0, 3, 2, 4, 5 }));
+            RotateMap.Add(Reindex(str, new int[] { 1, 0, 4, 5, 2, 3 }));
+            RotateMap.Add(Reindex(str, new int[] { 5, 4, 2, 3, 1, 0 }));
+            RotateMap.Add(Reindex(str, new int[] { 5, 4, 0, 1, 3, 2 }));
+            RotateMap.Add(Reindex(str, new int[] { 5, 4, 3, 2, 1, 0 }));
+            RotateMap.Add(Reindex(str, new int[] { 5, 4, 1, 0, 2, 3 }));
+            RotateMap.Add(Reindex(str, new int[] { 4, 5, 2, 3, 1, 0 }));
+            RotateMap.Add(Reindex(str, new int[] { 4, 5, 1, 0, 3, 2 }));
+            RotateMap.Add(Reindex(str, new int[] { 4, 5, 3, 2, 0, 1 }));
+            RotateMap.Add(Reindex(str, new int[] { 4, 5, 0, 1, 2, 3 }));
+            RotateMap.Add(Reindex(str, new int[] { 3, 2, 0, 1, 4, 5 }));
+            RotateMap.Add(Reindex(str, new int[] { 3, 2, 5, 4, 0, 1 }));
+            RotateMap.Add(Reindex(str, new int[] { 3, 2, 1, 0, 5, 4 }));
+            RotateMap.Add(Reindex(str, new int[] { 3, 2, 4, 5, 1, 0 }));
+            RotateMap.Add(Reindex(str, new int[] { 2, 3, 1, 0, 4, 5 }));
+            RotateMap.Add(Reindex(str, new int[] { 2, 3, 5, 4, 1, 0 }));
+            RotateMap.Add(Reindex(str, new int[] { 2, 3, 0, 1, 4, 5 }));
+            RotateMap.Add(Reindex(str, new int[] { 2, 3, 4, 5, 0, 1 }));
+            return;
+        }
+        
     }   
 }
 
