@@ -10,17 +10,10 @@ namespace TaskSKB
         static void Main(string[] args)
         {
             var task = new Task();
+            int v = task.RecognizeType("acfg..");
+            Console.WriteLine(v);
+            Console.ReadLine();
 
-            var str = Console.ReadLine();
-
-            Console.WriteLine(str);
-
-            int a;
-
-            if (Int32.TryParse(str, out a))
-                Console.WriteLine(a.ToString());
-            else
-                Console.WriteLine("fail parse");
         }
     }
 }

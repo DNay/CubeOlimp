@@ -63,7 +63,50 @@ namespace TaskSKB
             ListWidth.Sort();
             BoolFrame = new bool[ListWidth.Count, ListDepth.Count, ListHeight.Count];
         }
+        public int CountChar(string str, char sym)
+        {
+            int result = 0;
+            for (int i = 0; i < str.Length; i++)
+            {
+                if (str[i] == sym)
+                    result++;
+            }
+            return result;
+        }
 
+        public int RecognizeType(string str)
+        {
+            switch (CountChar(str, '.'))
+            {
+                case 6:
+                    return 4;//внутренний куб
+                case 5:
+                    return 1;//угол
+                case 1:
+                    return 3;//грань
+                case 0:
+                    return 1;//целый куб, считаем как угол
+                case 2:
+                    if (str[0] == str[1] || str[2] == str[3] || str[4] == str[5])
+                        return 2;
+                    else
+                        return 1;
+                case 3:
+                    if (str[0] == str[1] || str[2] == str[3] || str[4] == str[5])
+                        return 2;
+                    else
+                        return 1;
+                case 4:
+                    if ((str[0] == str[1] && str[2] == str[3]) || (str[0] == str[1] && str[4] == str[5])
+                        || (str[2] == str[3] && str[4] == str[5]))
+                        return 3;
+                    else
+                        return 2;
+                default:
+                    Console.WriteLine("type error");
+                    return -1;
+            }
+        }
     }   
 }
 
